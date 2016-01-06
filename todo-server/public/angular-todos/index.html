@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="angularTodoApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Angular Todos</title>
+    <link rel="stylesheet" href="../bower_components/todomvc-common/base.css">
+		  <link rel="stylesheet" href="../bower_components/todomvc-app-css/index.css">
+  </head>
+  <body>
+      <div ui-view></div>
+      <script src="../bower_components/angular/angular.min.js"></script>
+      <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+      <script src="app.js"></script>
+     	<script src='js/controllers/CommonController.js'></script>
+     	<script src='js/services/RequestService.js'></script>
+     	<script src='js/directives/todoFocus.js'></script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Normal Todos</title>
+    <link rel="stylesheet" href="../bower_components/todomvc-common/base.css">
+		  <link rel="stylesheet" href="../bower_components/todomvc-app-css/index.css">
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../bower_components/underscore/underscore.js"></script>
+  </head>
+  <body>
+      <section class="todoapp">
+        <div>
+          <header class="header">
+            <h1>todos</h1>
+            <input class="new-todo" placeholder="What needs to be done?">
+          </header>
+          <div id="mainWrap"></div>
+        </div>
+      </section>
+      <script type="text/javascript" src="js/app.js"></script>
+      <script id="mainWrapTemplate" type="text/template">
+        <section class="main">
+          <input class="toggle-all" type="checkbox">
+          <ul class="todo-list">
+           <%
+            var status = data.hashStatus,
+                todoData = (status == 'All') ? data : data.filter(function(todo) {
+                  var tempStatus = todo.completed ? 'Completed' : 'Active';
+                  return tempStatus == status;
+                });
+
+            _.each(todoData, function(item, i) {
+           %>
+            <li class="<%=item.completed ? 'completed' : ''%>" data-cache='<%=JSON.stringify(item)%>'>
+              <div class="view">
+                <input class="toggle" type="checkbox" <%=item.completed ? 'checked' : ''%> />
+                <label class="todo-label"><%=item.title%></label>
+                <button class="destroy"></button>
+              </div>
+              <input class="edit" value="<%=item.title%>">
+            </li>
+           <%});%>
+          </ul>
+        </section>
+        <footer class="footer">
+          <span class="todo-count">
+           <%
+            var activeTodos = data.filter(function(item) {
+              return !item.completed;
+            }), length = activeTodos.length;
+
+            var itemMsg = length > 1 ? 'items' : 'item';
+           %>
+            <strong><%=length%></strong>
+            <span> </span>
+            <span><%=itemMsg%></span>
+            <span> left</span>
+          </span>
+          <ul class="filters">
+            <li><a href="#/" class="<%=data.hashStatus == 'All' ? 'selected' : ''%>" data-status="All">All</a></li>
+            <span> </span>
+            <li><a href="#/active" class="<%=data.hashStatus == 'Active' ? 'selected' : ''%>" data-status="Active">Active</a></li>
+            <span> </span>
+            <li><a href="#/completed" class="<%=data.hashStatus == 'Completed' ? 'selected' : ''%>" data-status="Completed">Completed</a></li>
+          </ul>
+          <% if(data.length > length) {%>
+          <button class="clear-completed">Clear completed</button>
+          <%}%>
+        </footer>
+      </script>
+  </body>
+</html>

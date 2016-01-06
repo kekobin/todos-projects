@@ -1,0 +1,36 @@
+<section class="todoapp">
+  <header class="header">
+    <h1>todos</h1>
+    <input class="new-todo" placeholder="What needs to be done?" ng-keypress="newTodo($event)" ng-model="todo">
+  </header>
+  <section class="main">
+    <input class="toggle-all" type="checkbox">
+    <ul class="todo-list">
+      <li ng-repeat="todo in statusTodos" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+        <div class="view">
+          <input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)">
+          <label ng-dblclick="handleDblclick(todo)">{{todo.title}}</label>
+          <button class="destroy" ng-click="removeTodo(todo)"></button>
+        </div>
+        <input class="edit" value="{{todo.title}}" ng-model="todo.title" ng-keypress="editTodo($event, todo)"
+        todo-focus="todo == editedTodo" ng-blur="submitEdit(todo)">
+      </li>
+    </ul>
+  </section>
+  <footer class="footer">
+    <span class="todo-count">
+      <strong>{{statusTodos.length}}</strong>
+      <span> </span>
+      <span>item{{statusTodos.length > 1 ? 's' : ''}}</span>
+      <span> left</span>
+    </span>
+    <ul class="filters">
+      <li><a href="#/" ng-class="{selected: status == 'All'}">All</a></li>
+      <span> </span>
+      <li><a href="#/active" ng-class="{selected: status == 'Active'}">Active</a></li>
+      <span> </span>
+      <li><a href="#/completed" ng-class="{selected: status == 'Completed'}">Completed</a></li>
+    </ul>
+    <button class="clear-completed" ng-click="clearCompleted()">Clear completed</button>
+  </footer>
+</section>

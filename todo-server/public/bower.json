@@ -1,0 +1,35 @@
+{
+  "name": "todos",
+  "description": "todos-app",
+  "main": "",
+  "authors": [
+    "kekobin@163.com"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "todos"
+  ],
+  "homepage": "https://github.com/kekobin/todos-projects",
+  "moduleType": [
+    "amd"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "*",
+    "jquery": "*",
+    "angular-ui-router": "*",
+    "backbone": "*",
+    "underscore": "*",
+    "backbone.localStorage": "*",
+    "classnames": "*",
+    "director": "*",
+    "todomvc-common": "*",
+    "todomvc-app-css": "*"
+  }
+}
